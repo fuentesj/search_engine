@@ -1,12 +1,15 @@
 app.factory("searchEngineService", ["$http", function($http) {
 
-	return $http.get("http://localhost/search_results")
-				.succcess(function(data) {
-					return data;
-				})
-				.error(function(err) {
-					return err;
-				});
+	return $http({
+		method: 'GET',
+		url: 'http://localhost:5000/search_results'
+	}).then(function successCallback(response) {
+
+
+	}, function errorCallback(response) {
+
+
+	});
 }]);
 	
 

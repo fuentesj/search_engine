@@ -3,11 +3,5 @@ app.controller("SearchEngineController", ["$scope", "searchEngineService", funct
 	$scope.searchResults = {};
 
 
-	$scope.sendSearchQuery = function() {
-		searchEngineService.success(function(data) {
-				$scope.searchResults = data;
-			})
-	};
-
 
 }]);
