@@ -16,18 +16,16 @@
 							<div class="input-group">
 								<input type="text" class="form-control">
 								<span class="input-group-btn">
-									<button ng-submit="sendSearchQuery()" class="btn btn-default" type="button">Search</button>
+									<button ng-click="getSearchResults()" class="btn btn-default" type="button">Search</button>
 								</span>
 							</div>
 						</div>
 							{{ searchResults }}
-
 					</div>
 				</form>
 
 			</div>
 		</div>
-
 
 		<script src="js/app.js"></script>
 		<script src="js/controllers/searchEngineController.js"></script>

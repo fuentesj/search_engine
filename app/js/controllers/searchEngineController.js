@@ -1,7 +1,9 @@
-app.controller("SearchEngineController", ["$scope", "searchEngineService", function($scope, searchEngineService) {
+app.controller("SearchEngineController", function($scope, searchEngineService) {
 
-	$scope.searchResults = {};
+	$scope.searchResults = "foobar";
+	
+	$scope.getSearchResults = function() {
+		$scope.searchResults = searchEngineService.getSearchResults();
+	};
 
-
-
-}]);
+});
