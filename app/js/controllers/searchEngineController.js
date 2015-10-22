@@ -1,9 +1,11 @@
 app.controller("SearchEngineController", function($scope, searchEngineService) {
 
-	$scope.searchResults = "foobar";
+	$scope.searchResults = "";
 	
 	$scope.getSearchResults = function() {
-		$scope.searchResults = searchEngineService.getSearchResults();
+		searchEngineService.getSearchResults().then(function(result) {
+			console.log(result)
+			$scope.searchResults = result.data;
+		});
 	};
-
 });
