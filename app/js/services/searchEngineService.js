@@ -1,10 +1,10 @@
 app.factory("searchEngineService", ["$http", function($http) {
 
 	return {
-		getSearchResults: function() {
+		getSearchResults: function(search_term) {
 			return $http({
 						method: 'GET',
-						url: 'http://localhost:5000/search_results'
+						url: 'http://localhost:9200/_search?q=tag:'+search_term
 					}).then(
 						function successCallback(response) {
 							console.log("inside successCallback!")
