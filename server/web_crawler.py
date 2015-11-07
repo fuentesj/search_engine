@@ -1,6 +1,7 @@
 import re
 import urllib2
 from bs4 import BeautifulSoup
+from elasticsearch import Elasticsearch
 
 class WebCrawler:
 
@@ -9,6 +10,7 @@ class WebCrawler:
 		self.allowed_paths_list = []
 		self.ALLOW_KEYWORD = "Allow:"
 		self.base_page = "/index.html"
+		self.elasticSearchClient = Elasticsearch()
 
 	def search(self, base_domain):
 		try:
@@ -22,6 +24,12 @@ class WebCrawler:
 				 		for anchor_tag in soup.find_all('a'):
 				 			if anchor_tag is not None and anchor_tag.string is not None:
 					 			print anchor_tag.string + ": "+  str(anchor_tag['href']).strip()
+					 			document = {
+					 				"keyword"	: anchor_tag.string,
+					 				"url "		: str(anchor_tag['href']).strip()
+					 			}
+					 			result = self.elasticSearchClient.index(index="test=index", doc_type="search_result", body=document)
+					 			print(result['created'])
 				except urllib2.HTTPError, error:
 				 	print "An exception with an error code " + str(error.code) + " occurred while crawling " + base_domain + path
 		except urllib2.HTTPError:
